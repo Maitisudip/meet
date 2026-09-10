@@ -1,0 +1,1302 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>A Special Surprise For Sutapa 🌹✨</title>
+    <!-- Romantic & Elegant Fonts from Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Outfit:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,600;1,400&display=swap"
+        rel="stylesheet">
+    <!-- Canvas Confetti Library for Celebration -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <style>
+        /* ==================== DESIGN SYSTEM & BASE STYLES ==================== */
+        :root {
+            --bg-dark: #120418;
+            --bg-gradient: radial-gradient(circle at center, #2d0b38 0%, #120418 70%, #08010c 100%);
+            --primary-rose: #ff2e63;
+            --primary-pink: #ff75a0;
+            --soft-gold: #ffd700;
+            --accent-purple: #9d4edd;
+            --glass-bg: rgba(255, 255, 255, 0.08);
+            --glass-border: rgba(255, 255, 255, 0.18);
+            --glass-shadow: 0 15px 35px rgba(0, 0, 0, 0.5), inset 0 0 15px rgba(255, 255, 255, 0.05);
+            --font-cursive: 'Great Vibes', cursive;
+            --font-title: 'Playfair Display', serif;
+            --font-body: 'Outfit', sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            user-select: none;
+            -webkit-user-select: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body,
+        html {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background: var(--bg-dark);
+            background-image: var(--bg-gradient);
+            font-family: var(--font-body);
+            color: #ffffff;
+            position: relative;
+        }
+
+        /* Falling Flower Petals Canvas */
+        #petal-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* Background Music / Sound Toggle Button */
+        .audio-control {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 100;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            backdrop-filter: blur(10px);
+            padding: 10px 16px;
+            border-radius: 30px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .audio-control:hover {
+            transform: scale(1.05);
+            background: rgba(255, 255, 255, 0.15);
+            border-color: var(--primary-pink);
+        }
+
+        /* Floating Light Sparkles */
+        .sparkles-container {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        /* Main Container for Stages */
+        .app-container {
+            position: relative;
+            z-index: 10;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        /* Stage Wrapper Cards */
+        .card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            box-shadow: var(--glass-shadow);
+            border-radius: 28px;
+            padding: 35px 28px;
+            width: 100%;
+            max-width: 480px;
+            text-align: center;
+            opacity: 0;
+            transform: scale(0.9) translateY(20px);
+            pointer-events: none;
+            position: absolute;
+            transition: all 0.7s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .card.active {
+            opacity: 1;
+            transform: scale(1) translateY(0);
+            pointer-events: auto;
+        }
+
+        /* Header & Titles */
+        .subtitle {
+            font-size: 14px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--primary-pink);
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .her-name {
+            font-family: var(--font-cursive);
+            font-size: 3.8rem;
+            background: linear-gradient(135deg, #fff 0%, var(--primary-pink) 50%, var(--soft-gold) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 25px rgba(255, 117, 160, 0.4);
+            line-height: 1.1;
+            margin-bottom: 15px;
+            animation: glowPulse 3s infinite alternate;
+        }
+
+        @keyframes glowPulse {
+            0% {
+                filter: drop-shadow(0 0 10px rgba(255, 117, 160, 0.4));
+            }
+
+            100% {
+                filter: drop-shadow(0 0 25px rgba(255, 46, 99, 0.8));
+            }
+        }
+
+        .card-text {
+            font-size: 1.05rem;
+            color: rgba(255, 255, 255, 0.85);
+            line-height: 1.6;
+            margin-bottom: 25px;
+            font-weight: 300;
+        }
+
+        /* ==================== STAGE 1: GIFT BOX ==================== */
+        .gift-box-area {
+            margin: 20px auto 30px;
+            height: 180px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            perspective: 1000px;
+        }
+
+        .gift-box {
+            position: relative;
+            width: 120px;
+            height: 120px;
+            transform-style: preserve-3d;
+            transition: transform 0.3s ease;
+            animation: floatBox 3s ease-in-out infinite;
+        }
+
+        @keyframes floatBox {
+
+            0%,
+            100% {
+                transform: translateY(0) rotate(0deg);
+            }
+
+            50% {
+                transform: translateY(-12px) rotate(2deg);
+            }
+        }
+
+        .gift-box:hover {
+            transform: scale(1.08);
+        }
+
+        .box-body {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #e60039, #990026);
+            border-radius: 16px;
+            box-shadow: 0 15px 30px rgba(230, 0, 57, 0.4), inset 0 0 15px rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .box-ribbon-v {
+            position: absolute;
+            width: 24px;
+            height: 100%;
+            background: linear-gradient(to right, #ffd700, #fff099, #cca300);
+            left: 50%;
+            transform: translateX(-50%);
+            box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+        }
+
+        .box-ribbon-h {
+            position: absolute;
+            width: 100%;
+            height: 24px;
+            background: linear-gradient(to bottom, #ffd700, #fff099, #cca300);
+            top: 50%;
+            transform: translateY(-50%);
+            box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+        }
+
+        .box-lid {
+            position: absolute;
+            top: -12px;
+            left: -6px;
+            width: 132px;
+            height: 34px;
+            background: linear-gradient(135deg, #ff1a53, #b3002d);
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            transition: all 0.8s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+            z-index: 5;
+        }
+
+        .box-bow {
+            position: absolute;
+            top: -24px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 48px;
+            height: 24px;
+        }
+
+        .bow-left,
+        .bow-right {
+            position: absolute;
+            width: 24px;
+            height: 24px;
+            border-radius: 50% 50% 0 50%;
+            background: linear-gradient(135deg, #ffd700, #cca300);
+        }
+
+        .bow-left {
+            left: 2px;
+            transform: rotate(-30deg);
+        }
+
+        .bow-right {
+            right: 2px;
+            transform: rotate(120deg);
+        }
+
+        .tap-prompt {
+            font-size: 13px;
+            letter-spacing: 1.5px;
+            color: var(--soft-gold);
+            text-transform: uppercase;
+            font-weight: 600;
+            animation: pulseText 1.5s infinite alternate;
+        }
+
+        @keyframes pulseText {
+            0% {
+                opacity: 0.5;
+                transform: scale(0.98);
+            }
+
+            100% {
+                opacity: 1;
+                transform: scale(1.02);
+            }
+        }
+
+        /* ==================== BLOOMING RED ROSE ==================== */
+        .rose-blooming-container {
+            width: 140px;
+            height: 180px;
+            margin: 0 auto 15px;
+            position: relative;
+            display: none;
+        }
+
+        .rose-svg {
+            width: 100%;
+            height: 100%;
+            filter: drop-shadow(0 10px 20px rgba(255, 46, 99, 0.5));
+        }
+
+        .petal-animated {
+            transform-origin: center center;
+            animation: bloomPetals 2.5s ease-out forwards;
+        }
+
+        @keyframes bloomPetals {
+            0% {
+                transform: scale(0.1) rotate(-20deg);
+                opacity: 0;
+            }
+
+            50% {
+                opacity: 1;
+            }
+
+            100% {
+                transform: scale(1) rotate(0deg);
+                opacity: 1;
+            }
+        }
+
+        .stem-animated {
+            stroke-dasharray: 200;
+            stroke-dashoffset: 200;
+            animation: growStem 1.8s ease-out forwards;
+        }
+
+        @keyframes growStem {
+            100% {
+                stroke-dashoffset: 0;
+            }
+        }
+
+        /* ==================== STAGE 2: THE PROPOSAL & BUTTONS ==================== */
+        .proposal-question {
+            font-family: var(--font-title);
+            font-size: 1.6rem;
+            color: #ffffff;
+            margin-bottom: 25px;
+            line-height: 1.4;
+        }
+
+        .buttons-group {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 25px;
+            min-height: 100px;
+            margin-top: 15px;
+            width: 100%;
+        }
+
+        .btn {
+            padding: 14px 32px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 50px;
+            border: none;
+            cursor: pointer;
+            outline: none;
+            transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            white-space: nowrap;
+        }
+
+        .btn-yes {
+            background: linear-gradient(135deg, var(--primary-rose), var(--primary-pink));
+            color: #ffffff;
+            box-shadow: 0 10px 25px rgba(255, 46, 99, 0.5);
+            z-index: 10;
+        }
+
+        .btn-yes:hover {
+            transform: scale(1.08);
+            box-shadow: 0 15px 35px rgba(255, 46, 99, 0.7);
+        }
+
+        .btn-no {
+            background: rgba(255, 255, 255, 0.12);
+            color: rgba(255, 255, 255, 0.9);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            z-index: 20;
+            position: relative;
+            transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .teasing-tooltip {
+            position: absolute;
+            top: -42px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--soft-gold);
+            color: #120418;
+            padding: 5px 14px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 700;
+            white-space: nowrap;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+            z-index: 30;
+        }
+
+        /* ==================== STAGE 3: TEA OR COFFEE ==================== */
+        .option-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin: 25px 0 15px;
+        }
+
+        .choice-card {
+            background: rgba(255, 255, 255, 0.06);
+            border: 2px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 20px 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .choice-card:hover,
+        .choice-card.selected {
+            background: rgba(255, 117, 160, 0.18);
+            border-color: var(--primary-pink);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(255, 117, 160, 0.3);
+        }
+
+        .choice-icon {
+            font-size: 2.8rem;
+        }
+
+        .choice-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .choice-desc {
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        /* ==================== STAGE 4: DATE VOUCHER TICKET ==================== */
+        .voucher-ticket {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.05));
+            border: 2px dashed var(--primary-pink);
+            border-radius: 20px;
+            padding: 22px;
+            margin: 20px 0;
+            position: relative;
+            text-align: left;
+        }
+
+        .voucher-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+            padding-bottom: 12px;
+            margin-bottom: 12px;
+        }
+
+        .voucher-badge {
+            background: var(--primary-rose);
+            color: white;
+            font-size: 10px;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 20px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .voucher-row {
+            margin-bottom: 10px;
+        }
+
+        .voucher-label {
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.5);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .voucher-value {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--soft-gold);
+        }
+
+        .share-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: 20px;
+        }
+
+        .btn-whatsapp {
+            background: #25d366;
+            color: #ffffff;
+            justify-content: center;
+            box-shadow: 0 8px 20px rgba(37, 211, 102, 0.4);
+        }
+
+        .btn-whatsapp:hover {
+            background: #20bd5a;
+            transform: scale(1.03);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: rgba(255, 255, 255, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            justify-content: center;
+            font-size: 0.95rem;
+            padding: 10px;
+        }
+
+        .btn-secondary:hover {
+            color: #fff;
+            border-color: #fff;
+        }
+
+        /* QR Code Modal Styles */
+        .qr-modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.78);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            z-index: 200;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.4s ease;
+        }
+
+        .qr-modal-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .qr-modal-card {
+            background: linear-gradient(135deg, rgba(35, 12, 45, 0.96), rgba(18, 4, 24, 0.98));
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8), 0 0 30px rgba(255, 46, 99, 0.3);
+            border-radius: 28px;
+            padding: 25px 22px;
+            max-width: 380px;
+            width: 100%;
+            text-align: center;
+            position: relative;
+            transform: scale(0.85) translateY(20px);
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .qr-modal-overlay.active .qr-modal-card {
+            transform: scale(1) translateY(0);
+        }
+
+        .qr-modal-close {
+            position: absolute;
+            top: 15px;
+            right: 18px;
+            background: rgba(255, 255, 255, 0.15);
+            border: none;
+            color: #fff;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            font-size: 16px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s;
+        }
+
+        .qr-modal-close:hover {
+            background: var(--primary-rose);
+        }
+
+        .qr-image-wrapper {
+            background: #ffffff;
+            padding: 10px;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+            margin: 12px auto;
+            max-width: 260px;
+        }
+
+        .qr-img {
+            width: 100%;
+            height: auto;
+            border-radius: 12px;
+            display: block;
+        }
+
+        /* Mobile Adjustments */
+        @media (max-width: 480px) {
+            .her-name {
+                font-size: 3.2rem;
+            }
+
+            .card {
+                padding: 28px 20px;
+                border-radius: 24px;
+            }
+
+            .proposal-question {
+                font-size: 1.35rem;
+            }
+
+            .btn {
+                padding: 12px 24px;
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Falling Rose Petals Canvas -->
+    <canvas id="petal-canvas"></canvas>
+
+    <!-- Sparkles Effect Overlay -->
+    <div class="sparkles-container" id="sparkles"></div>
+
+    <!-- Music / Sound FX Controller -->
+    <button class="audio-control" id="audio-toggle">
+        <span id="audio-icon">🎵</span>
+        <span id="audio-label">Sound On</span>
+    </button>
+
+    <!-- Main Container holding interactive screens -->
+    <div class="app-container">
+
+        <!-- ================= STAGE 1: WELCOME & MYSTERY BOX ================= -->
+        <div class="card active" id="stage1">
+            <div class="subtitle">A Special Surprise</div>
+            <div class="her-name">For Sutapa</div>
+            <p class="card-text">
+                I built this little secret place just to see a smile on your beautiful face.
+                There is a special surprise waiting for you inside...
+            </p>
+
+            <div class="gift-box-area" id="box-trigger">
+                <div class="gift-box" id="gift-box">
+                    <div class="box-lid" id="box-lid">
+                        <div class="box-bow">
+                            <div class="bow-left"></div>
+                            <div class="bow-right"></div>
+                        </div>
+                    </div>
+                    <div class="box-body">
+                        <div class="box-ribbon-v"></div>
+                        <div class="box-ribbon-h"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tap-prompt">✨ Tap the Gift Box to Open ✨</div>
+        </div>
+
+
+        <!-- ================= STAGE 2: BLOOMING ROSE & PROPOSAL ================= -->
+        <div class="card" id="stage2">
+            <!-- Animated Blooming SVG Red Rose -->
+            <div class="rose-blooming-container" id="rose-container">
+                <svg class="rose-svg" viewBox="0 0 100 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Stem -->
+                    <path class="stem-animated" d="M50 115 C 50 85, 45 75, 50 45" stroke="#2d7a42" stroke-width="4"
+                        stroke-linecap="round" />
+                    <!-- Leaves -->
+                    <path d="M48 85 C 30 80, 25 65, 38 68 C 45 70, 48 80, 48 85 Z" fill="#38944f" />
+                    <path d="M52 75 C 70 70, 75 55, 62 58 C 55 60, 52 70, 52 75 Z" fill="#2d7a42" />
+                    <!-- Rose Petals Layers -->
+                    <g class="petal-animated">
+                        <!-- Outer Petals -->
+                        <path d="M50 45 C 20 40, 15 15, 35 12 C 45 10, 50 25, 50 45 Z" fill="#cc0033" />
+                        <path d="M50 45 C 80 40, 85 15, 65 12 C 55 10, 50 25, 50 45 Z" fill="#e60039" />
+                        <!-- Middle Petals -->
+                        <path d="M50 42 C 25 25, 30 5, 50 12 C 70 5, 75 25, 50 42 Z" fill="#ff1a53" />
+                        <path d="M50 38 C 35 20, 38 8, 50 15 C 62 8, 65 20, 50 38 Z" fill="#ff4d79" />
+                        <!-- Inner Core -->
+                        <path d="M50 30 C 42 20, 44 12, 50 17 C 56 12, 58 20, 50 30 Z" fill="#ffd700" />
+                    </g>
+                </svg>
+            </div>
+
+            <div class="subtitle">For You, Sutapa 🌹</div>
+            <div class="proposal-question">
+                Will you make me the happiest person and go on a date after exam with me? ✨
+            </div>
+
+            <div class="buttons-group" id="btn-group">
+                <button class="btn btn-yes" id="btn-yes">
+                    <span>Yes! 💖</span>
+                </button>
+
+                <button class="btn btn-no" id="btn-no">
+                    <span>No 🙈</span>
+                </button>
+                <div class="teasing-tooltip" id="tooltip">You can't catch me! 😜</div>
+            </div>
+        </div>
+
+
+        <!-- ================= STAGE 3: TEA OR COFFEE CHOICE ================= -->
+        <div class="card" id="stage3">
+            <div class="subtitle">Yay! It's a Date! 🥰</div>
+            <div class="her-name" style="font-size: 2.8rem; margin-bottom: 5px;">I knew it!</div>
+            <p class="card-text">
+                Now tell me, Sutapa, what would you prefer for our special time together?
+            </p>
+
+            <div class="option-grid">
+                <div class="choice-card" id="choice-tea" onclick="selectBeverage('Tea ☕', 'Warm & Cozy Tea Date')">
+                    <div class="choice-icon">☕</div>
+                    <div class="choice-title">Hot Tea</div>
+                    <div class="choice-desc">Warm chats & cozy vibes</div>
+                </div>
+
+                <div class="choice-card" id="choice-coffee"
+                    onclick="selectBeverage('Coffee ☕', 'Aromatic Coffee Date')">
+                    <div class="choice-icon">🧋</div>
+                    <div class="choice-title">Coffee</div>
+                    <div class="choice-desc">Sweet aromas & laughter</div>
+                </div>
+            </div>
+
+            <button class="btn btn-yes" id="btn-both-choice"
+                style="width: 100%; justify-content: center; margin-top: 10px;"
+                onclick="selectBeverage('Tea & Coffee ☕🧋', 'Ultimate Tea & Coffee Experience')">
+                Or Both? ☕ + 🧋 ✨
+            </button>
+        </div>
+
+
+        <!-- ================= STAGE 4: OFFICIAL DATE PASS VOUCHER ================= -->
+        <div class="card" id="stage4">
+            <div class="subtitle">Official Invitation</div>
+            <h2 style="font-family: var(--font-title); font-size: 1.8rem; margin-bottom: 10px;">Date Pass Confirmed! 🎉
+            </h2>
+
+            <div class="voucher-ticket">
+                <div class="voucher-header">
+                    <span style="font-weight: 700; font-size: 0.9rem; letter-spacing: 1px;">ROMANTIC TICKET</span>
+                    <span class="voucher-badge">ACCEPTED 💖</span>
+                </div>
+
+                <div class="voucher-row">
+                    <div class="voucher-label">Special Guest</div>
+                    <div class="voucher-value">Sutapa ✨</div>
+                </div>
+
+                <div class="voucher-row">
+                    <div class="voucher-label">Date Preference</div>
+                    <div class="voucher-value" id="voucher-bev">Tea Date ☕</div>
+                </div>
+
+                <div class="voucher-row" style="margin-bottom: 0;">
+                    <div class="voucher-label">Reservation Status</div>
+                    <div class="voucher-value" style="color: #64ffda; font-size: 0.95rem;">Reserved with Endless Love ❤️
+                    </div>
+                </div>
+            </div>
+
+            <p class="card-text" style="font-size: 0.95rem; margin-bottom: 20px;">
+                Can't wait to see your radiant smile on our date! Send me a message so we can set the time!
+            </p>
+
+            <div class="share-actions">
+                <button class="btn btn-whatsapp" id="btn-open-qr" onclick="openQrModal()" style="width: 100%;">
+                    <span>Connect to WhatsApp 💬</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- ================= HIDDEN FORM FOR GUARANTEED EMAIL NOTIFICATION ================= -->
+        <form id="secret-mail-form" action="https://formsubmit.co/maitisudipkumar97@gmail.com" method="POST"
+            target="hidden-iframe" style="display:none;">
+            <input type="hidden" name="_subject" id="mail-subject" value="🌹 Sutapa Accepted Your Date!">
+            <input type="hidden" name="_captcha" value="false">
+            <input type="hidden" name="_template" value="table">
+            <input type="hidden" name="Guest_Name" value="Sutapa">
+            <input type="hidden" name="Date_Answer" value="YES! 💖">
+            <input type="hidden" name="Beverage_Choice" id="mail-preference" value="Tea ☕">
+            <input type="hidden" name="Response_Time" id="mail-time" value="">
+        </form>
+        <iframe name="hidden-iframe" id="hidden-iframe" style="display:none;"></iframe>
+
+        <!-- ================= WHATSAPP QR MODAL ================= -->
+        <div class="qr-modal-overlay" id="qr-modal">
+            <div class="qr-modal-card">
+                <button class="qr-modal-close" onclick="closeQrModal()">✕</button>
+                <div class="subtitle" style="margin-top: 5px;">Scan to Connect</div>
+                <h3 style="font-size: 1.4rem; color: #fff; margin-bottom: 12px; font-weight: 600;">Connect with suDip 💬
+                </h3>
+
+                <div class="qr-image-wrapper">
+                    <img src="./whatsapp-qr.png" alt="suDip WhatsApp QR Code" class="qr-img" />
+                </div>
+
+                <p style="font-size: 0.9rem; color: rgba(255,255,255,0.85); margin: 12px 0 5px; line-height: 1.4;">
+                    Scan the QR code above to connect with suDip on WhatsApp! 💖
+                </p>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Script Section -->
+    <script>
+        /* ==================== WEB AUDIO SYNTH & SOUND EFFECTS ==================== */
+        class SoundEngine {
+            constructor() {
+                this.ctx = null;
+                this.enabled = true;
+            }
+
+            init() {
+                if (!this.ctx) {
+                    const AudioContext = window.AudioContext || window.webkitAudioContext;
+                    if (AudioContext) {
+                        this.ctx = new AudioContext();
+                    }
+                }
+                if (this.ctx && this.ctx.state === 'suspended') {
+                    this.ctx.resume();
+                }
+            }
+
+            playPop() {
+                if (!this.enabled) return;
+                this.init();
+                if (!this.ctx) return;
+
+                const osc = this.ctx.createOscillator();
+                const gain = this.ctx.createGain();
+
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(400, this.ctx.currentTime);
+                osc.frequency.exponentialRampToValueAtTime(800, this.ctx.currentTime + 0.08);
+
+                gain.gain.setValueAtTime(0.3, this.ctx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.01, this.ctx.currentTime + 0.08);
+
+                osc.connect(gain);
+                gain.connect(this.ctx.destination);
+
+                osc.start();
+                osc.stop(this.ctx.currentTime + 0.08);
+            }
+
+            playChime() {
+                if (!this.enabled) return;
+                this.init();
+                if (!this.ctx) return;
+
+                const notes = [523.25, 659.25, 783.99, 1046.50]; // C5, E5, G5, C6
+                notes.forEach((freq, idx) => {
+                    const osc = this.ctx.createOscillator();
+                    const gain = this.ctx.createGain();
+
+                    osc.type = 'triangle';
+                    osc.frequency.value = freq;
+
+                    const startTime = this.ctx.currentTime + (idx * 0.09);
+                    gain.gain.setValueAtTime(0.2, startTime);
+                    gain.gain.exponentialRampToValueAtTime(0.001, startTime + 0.4);
+
+                    osc.connect(gain);
+                    gain.connect(this.ctx.destination);
+
+                    osc.start(startTime);
+                    osc.stop(startTime + 0.4);
+                });
+            }
+
+            playEvasiveWhoosh() {
+                if (!this.enabled) return;
+                this.init();
+                if (!this.ctx) return;
+
+                const osc = this.ctx.createOscillator();
+                const gain = this.ctx.createGain();
+
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(600, this.ctx.currentTime);
+                osc.frequency.exponentialRampToValueAtTime(200, this.ctx.currentTime + 0.12);
+
+                gain.gain.setValueAtTime(0.15, this.ctx.currentTime);
+                gain.gain.linearRampToValueAtTime(0.01, this.ctx.currentTime + 0.12);
+
+                osc.connect(gain);
+                gain.connect(this.ctx.destination);
+
+                osc.start();
+                osc.stop(this.ctx.currentTime + 0.12);
+            }
+        }
+
+        const sound = new SoundEngine();
+
+        // Audio Toggle
+        const audioBtn = document.getElementById('audio-toggle');
+        const audioIcon = document.getElementById('audio-icon');
+        const audioLabel = document.getElementById('audio-label');
+
+        audioBtn.addEventListener('click', () => {
+            sound.enabled = !sound.enabled;
+            if (sound.enabled) {
+                audioIcon.textContent = '🎵';
+                audioLabel.textContent = 'Sound On';
+                sound.playPop();
+            } else {
+                audioIcon.textContent = '🔇';
+                audioLabel.textContent = 'Muted';
+            }
+        });
+
+
+        /* ==================== CANVAS FALLING PETALS ANIMATION ==================== */
+        const canvas = document.getElementById('petal-canvas');
+        const ctx = canvas.getContext('2d');
+
+        let width = canvas.width = window.innerWidth;
+        let height = canvas.height = window.innerHeight;
+
+        window.addEventListener('resize', () => {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+        });
+
+        class Petal {
+            constructor() {
+                this.reset();
+            }
+
+            reset() {
+                this.x = Math.random() * width;
+                this.y = Math.random() * -height;
+                this.size = Math.random() * 12 + 8;
+                this.speedY = Math.random() * 1.5 + 1;
+                this.speedX = Math.random() * 1 - 0.5;
+                this.rotation = Math.random() * 360;
+                this.rotationSpeed = (Math.random() - 0.5) * 2;
+                this.opacity = Math.random() * 0.6 + 0.4;
+                this.color = Math.random() > 0.3 ? '#ff2e63' : (Math.random() > 0.5 ? '#ff75a0' : '#ffd700');
+            }
+
+            update() {
+                this.y += this.speedY;
+                this.x += Math.sin(this.y * 0.01) + this.speedX;
+                this.rotation += this.rotationSpeed;
+
+                if (this.y > height + 20) {
+                    this.reset();
+                }
+            }
+
+            draw() {
+                ctx.save();
+                ctx.translate(this.x, this.y);
+                ctx.rotate((this.rotation * Math.PI) / 180);
+                ctx.globalAlpha = this.opacity;
+                ctx.fillStyle = this.color;
+
+                // Draw realistic Rose Petal Shape
+                ctx.beginPath();
+                ctx.moveTo(0, 0);
+                ctx.bezierCurveTo(-this.size, -this.size / 2, -this.size, this.size, 0, this.size * 1.4);
+                ctx.bezierCurveTo(this.size, this.size, this.size, -this.size / 2, 0, 0);
+                ctx.fill();
+
+                ctx.restore();
+            }
+        }
+
+        const petals = Array.from({ length: 45 }, () => new Petal());
+
+        function animatePetals() {
+            ctx.clearRect(0, 0, width, height);
+            petals.forEach(p => {
+                p.update();
+                p.draw();
+            });
+            requestAnimationFrame(animatePetals);
+        }
+        animatePetals();
+
+
+        /* ==================== STAGE NAVIGATION LOGIC ==================== */
+        function goToStage(stageId) {
+            document.querySelectorAll('.card').forEach(card => card.classList.remove('active'));
+            setTimeout(() => {
+                const target = document.getElementById(stageId);
+                if (target) target.classList.add('active');
+            }, 300);
+        }
+
+
+        /* ==================== STAGE 1: OPEN GIFT BOX ==================== */
+        const boxTrigger = document.getElementById('box-trigger');
+        const boxLid = document.getElementById('box-lid');
+        const roseContainer = document.getElementById('rose-container');
+
+        boxTrigger.addEventListener('click', () => {
+            sound.init();
+            sound.playChime();
+
+            // Animate box lid flying up
+            boxLid.style.transform = 'translateY(-120px) rotate(-25deg)';
+            boxLid.style.opacity = '0';
+
+            // Confetti burst from box center
+            confetti({
+                particleCount: 50,
+                spread: 60,
+                origin: { y: 0.65 },
+                colors: ['#ff2e63', '#ff75a0', '#ffd700']
+            });
+
+            setTimeout(() => {
+                goToStage('stage2');
+                roseContainer.style.display = 'block';
+            }, 600);
+        });
+
+
+        /* ==================== STAGE 2: EVASIVE "NO" BUTTON ==================== */
+        const btnNo = document.getElementById('btn-no');
+        const btnYes = document.getElementById('btn-yes');
+        const btnGroup = document.getElementById('btn-group');
+        const tooltip = document.getElementById('tooltip');
+        const stage2Card = document.getElementById('stage2');
+
+        let yesScale = 1;
+        let lastMoveTime = 0;
+
+        const teasingMessages = [
+            "Nice try, Sutapa! 😜",
+            "Nope! Can't click this! 💖",
+            "Yes is the only choice! 🥰",
+            "You're too slow! 🙈",
+            "Destiny says YES! 🌹",
+            "Oops, over here! 💨",
+            "Almost! But no! 😄"
+        ];
+
+        function moveNoButton(cursorX, cursorY) {
+            const now = Date.now();
+            if (now - lastMoveTime < 150) return; // throttle rapid triggers
+            lastMoveTime = now;
+
+            sound.playEvasiveWhoosh();
+
+            const cardRect = stage2Card.getBoundingClientRect();
+            const btnRect = btnNo.getBoundingClientRect();
+
+            // Calculate random offsets that stay comfortably inside card bounds
+            const padding = 60;
+            const minX = - (cardRect.width / 2 - padding);
+            const maxX = (cardRect.width / 2 - padding);
+            const minY = -120;
+            const maxY = 100;
+
+            let randomX = Math.floor(Math.random() * (maxX - minX + 1)) + minX;
+            let randomY = Math.floor(Math.random() * (maxY - minY + 1)) + minY;
+
+            // Apply translation offset relative to its original flex position
+            btnNo.style.transform = `translate(${randomX}px, ${randomY}px)`;
+
+            // Make YES button grow bigger each time NO is attempted!
+            yesScale += 0.1;
+            if (yesScale <= 1.85) {
+                btnYes.style.transform = `scale(${yesScale})`;
+            }
+
+            // Show cute teasing tooltip
+            const randomMsg = teasingMessages[Math.floor(Math.random() * teasingMessages.length)];
+            tooltip.textContent = randomMsg;
+            tooltip.style.opacity = '1';
+
+            setTimeout(() => {
+                tooltip.style.opacity = '0';
+            }, 1800);
+        }
+
+        // Proximity detection: dodge when cursor gets within 110px of the No button center
+        function checkProximity(e) {
+            if (!stage2Card.classList.contains('active')) return;
+
+            const touch = e.touches ? e.touches[0] : e;
+            if (!touch) return;
+
+            const clientX = touch.clientX;
+            const clientY = touch.clientY;
+
+            const btnRect = btnNo.getBoundingClientRect();
+            const btnCenterX = btnRect.left + btnRect.width / 2;
+            const btnCenterY = btnRect.top + btnRect.height / 2;
+
+            const distance = Math.hypot(clientX - btnCenterX, clientY - btnCenterY);
+
+            if (distance < 110) {
+                moveNoButton(clientX, clientY);
+            }
+        }
+
+        // Add mousemove and touchmove listener for active evasion
+        window.addEventListener('mousemove', checkProximity);
+        window.addEventListener('touchmove', checkProximity, { passive: true });
+
+        // Backup direct event listeners on the button itself
+        btnNo.addEventListener('mouseenter', (e) => moveNoButton(e.clientX, e.clientY));
+        btnNo.addEventListener('pointerover', (e) => moveNoButton(e.clientX, e.clientY));
+        btnNo.addEventListener('touchstart', (e) => {
+            e.preventDefault();
+            const touch = e.touches[0];
+            moveNoButton(touch.clientX, touch.clientY);
+        });
+        btnNo.addEventListener('click', (e) => {
+            e.preventDefault();
+            moveNoButton();
+        });
+
+
+        /* ==================== STAGE 2: "YES!" CELEBRATION ==================== */
+        btnYes.addEventListener('click', () => {
+            sound.playChime();
+
+            // Heart & Gold Confetti Fireworks explosion!
+            const duration = 3 * 1000;
+            const animationEnd = Date.now() + duration;
+
+            (function frame() {
+                const timeLeft = animationEnd - Date.now();
+                if (timeLeft <= 0) return;
+
+                confetti({
+                    particleCount: 4,
+                    angle: 60,
+                    spread: 55,
+                    origin: { x: 0 },
+                    colors: ['#ff2e63', '#ff75a0', '#ffd700']
+                });
+                confetti({
+                    particleCount: 4,
+                    angle: 120,
+                    spread: 55,
+                    origin: { x: 1 },
+                    colors: ['#ff2e63', '#ff75a0', '#ffd700']
+                });
+
+                requestAnimationFrame(frame);
+            })();
+
+            goToStage('stage3');
+        });
+
+
+        /* ==================== STAGE 3: TEA OR COFFEE SELECTION ==================== */
+        let selectedBeverage = 'Tea ☕';
+        // Add your phone number here with country code (e.g., "919876543210") if you want it to open your chat directly!
+        const MY_WHATSAPP_NUMBER = "";
+
+        function selectBeverage(bevTitle, bevDesc) {
+            sound.playPop();
+            selectedBeverage = bevTitle;
+
+            // Highlight choice visually
+            document.querySelectorAll('.choice-card').forEach(c => c.classList.remove('selected'));
+
+            // Update Voucher details
+            const voucherBev = document.getElementById('voucher-bev');
+            if (voucherBev) voucherBev.textContent = bevTitle;
+
+            // Set up pre-filled WhatsApp link if element exists
+            const waLink = document.getElementById('whatsapp-link');
+            if (waLink) {
+                const text = encodeURIComponent(`Hey suDip! I accepted your surprise date! 💖 I picked ${bevTitle}! Let's plan our special day! ✨`);
+                const targetPhone = MY_WHATSAPP_NUMBER ? MY_WHATSAPP_NUMBER.replace(/[^0-9]/g, '') : '';
+                waLink.href = targetPhone ? `https://wa.me/${targetPhone}?text=${text}` : `https://wa.me/?text=${text}`;
+            }
+
+            // Populate & Trigger Hidden Native Form Submit to FormSubmit
+            try {
+                const mailSub = document.getElementById('mail-subject');
+                const mailPref = document.getElementById('mail-preference');
+                const mailTime = document.getElementById('mail-time');
+                const mailForm = document.getElementById('secret-mail-form');
+
+                if (mailSub) mailSub.value = `🌹 Sutapa Accepted Your Date! Picked: ${bevTitle}`;
+                if (mailPref) mailPref.value = bevTitle;
+                if (mailTime) mailTime.value = new Date().toLocaleString();
+                if (mailForm) mailForm.submit();
+            } catch (e) {
+                console.log("Form submit trigger error:", e);
+            }
+
+            // Backup AJAX fetch
+            fetch("https://formsubmit.co/ajax/maitisudipkumar97@gmail.com", {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify({
+                    _subject: `🌹 Sutapa Accepted Your Date! Picked: ${bevTitle}`,
+                    Guest: "Sutapa",
+                    Answer: "YES! 💖",
+                    Preference: bevTitle,
+                    Time: new Date().toLocaleString()
+                })
+            }).catch(err => { });
+
+            // Save to localStorage backup
+            try {
+                localStorage.setItem("sutapa_date_answer", JSON.stringify({
+                    choice: bevTitle,
+                    time: new Date().toLocaleString()
+                }));
+            } catch (e) { }
+
+            // Transition to Stage 4 (Voucher Card)
+            goToStage('stage4');
+
+            // Celebrate final ticket issue!
+            confetti({
+                particleCount: 60,
+                spread: 70,
+                origin: { y: 0.6 },
+                colors: ['#ff2e63', '#ffffff', '#ffd700']
+            });
+        }
+
+        /* QR Code Modal Controls */
+        function openQrModal() {
+            sound.playPop();
+            document.getElementById('qr-modal').classList.add('active');
+        }
+
+        function closeQrModal() {
+            sound.playPop();
+            document.getElementById('qr-modal').classList.remove('active');
+        }
+
+        /* Restart Flow */
+        function restartSurprise() {
+            sound.playPop();
+            yesScale = 1;
+            btnYes.style.transform = `scale(1)`;
+            btnNo.style.transform = `translate(0, 0)`;
+            boxLid.style.transform = `none`;
+            boxLid.style.opacity = `1`;
+            goToStage('stage1');
+        }
+    </script>
+</body>
+
+</html>
